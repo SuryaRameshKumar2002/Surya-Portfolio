@@ -1,50 +1,202 @@
 <!DOCTYPE html>
 <html lang="en">
-
-    <!-- Basic -->
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">   
-   
-    <!-- Mobile Metas -->
-    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
- 
-     <!-- Site Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Surya. Portfolio</title>  
-    <meta name="keywords" content="">
-    <meta name="description" content="">
     <meta name="author" content="Surya.R">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha384-... (use the provided integrity and crossorigin attributes from the FontAwesome website)">
 
-    <!-- Site Icons -->
-    <link rel="shortcut icon" href="images/logo.png" type="image/x-icon" />
-    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <!-- Google Fonts for Cinematic Effect -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Playfair+Display:wght@700&family=Raleway:wght@900&display=swap" rel="stylesheet">
 
-    <!-- Bootstrap CSS -->
+    <!-- External Styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <!-- Site CSS -->
     <link rel="stylesheet" href="style.css">
-    <!-- Responsive CSS -->
     <link rel="stylesheet" href="css/responsive.css">
-    <!-- Custom CSS -->
     <link rel="stylesheet" href="css/custom.css">
-	<script src="js/modernizr.js"></script> <!-- Modernizr -->
+    <script src="js/modernizr.js"></script>
 
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <style>
+	@import url('https://fonts.googleapis.com/css2?family=Orbitron&family=Playfair+Display&family=Raleway&family=Pacifico&family=Dancing+Script&family=Caveat&family=Anton&family=Oswald&family=Bebas+Neue&family=Patrick+Hand&family=Gloria+Hallelujah&family=Rock+Salt&family=Permanent+Marker&family=Indie+Flower&family=Shadows+Into+Light&family=Press+Start+2P&family=Lobster&family=Zilla+Slab&family=Satisfy&family=Courgette&family=Black+Ops+One&family=Fredericka+the+Great&family=Special+Elite&family=Amatic+SC&family=Faster+One&display=swap');
+        /* Fullscreen Preloader */
+        .custom-preloader {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, #111 20%, #000 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            z-index: 9999;
+        }
 
+        .custom-name {
+            color: white;
+            font-size: 5rem; /* Bigger Font */
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: font-family 0.5s ease-in-out;
+            animation: textGlow 1.5s infinite alternate;
+        }
+
+        /* Text Glow Effect */
+        @keyframes textGlow {
+            0% { text-shadow: 0 0 10px rgba(255,255,255,0.3); }
+            100% { text-shadow: 0 0 40px rgba(255,255,255,0.9); }
+        }
+
+        /* Cinematic Fade-out & Zoom Effect */
+        .fade-out {
+            animation: fadeOutZoom 1.5s ease-out forwards;
+        }
+
+        @keyframes fadeOutZoom {
+            0% { opacity: 1; transform: scale(1); }
+            100% { opacity: 0; transform: scale(1.5); visibility: hidden; }
+        }
+
+        /* Initially hide page content */
+        .custom-page-content {
+            opacity: 0;
+            transform: scale(0.95);
+            transition: opacity 1.5s ease-in-out, transform 1.5s ease-in-out;
+        }
+		
+		/* Text Container */
+.text-container {
+    text-align: center;
+    padding-top: 100px;
+    transition: all 1.5s ease-in-out;
+}
+
+/* Initial state (Before animation) */
+.text-container p {
+    color: white;
+    margin-bottom: 10px;
+    font-size: 2rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 1s ease-in-out;
+}
+
+.text-container h1 {
+    font-size: 6rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    line-height: 1;
+    color: white;
+    font-family: 'Oswald', sans-serif;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 1s ease-in-out;
+}
+
+/* Final state (After animation) */
+.text-container.active {
+    padding-top: 50px; /* Moves slightly up */
+}
+
+.text-container.active p {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.text-container.active h1 {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* After 3s, merge into one line */
+.text-container.final h1 {
+    font-size: 2.5rem; /* Reduce size slightly */
+    display: inline;
+}
+
+.text-container.final p {
+    display: inline;
+    margin-right: 10px;
+}
+
+/* Old TV Opening Effect */
+        .screen-bar {
+            position: fixed;
+            width: 100%;
+            height: 50%;
+            background: black;
+            z-index: 10000;
+            transition: transform 1.5s ease-in-out;
+        }
+
+        .screen-bar-top {
+            top: 0;
+            transform: translateY(0);
+        }
+
+        .screen-bar-bottom {
+            bottom: 0;
+            transform: translateY(0);
+        }
+
+        /* When animation starts, move bars out of view */
+        .screen-open .screen-bar-top {
+            transform: translateY(-100%);
+        }
+
+        .screen-open .screen-bar-bottom {
+            transform: translateY(100%);
+        }
+
+    </style>
 </head>
 <body id="page-top" class="politics_version">
 
-    <!-- LOADER -->
-    <div id="preloader">
-        <div id="main-ld">
-			<div id="loader"></div>  
-		</div>
-    </div><!-- end loader -->
-    <!-- END LOADER -->
-	
+
+
+
+    <!-- Preloader -->
+    <div class="custom-preloader">
+        <h1 class="custom-name" id="custom-name">Surya.R</h1>
+    </div>
+
+    
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const nameElement = document.getElementById("custom-name");
+            const preloader = document.querySelector(".custom-preloader");
+            const pageContent = document.querySelector(".custom-page-content");
+
+            const fonts = [
+        "'Orbitron', sans-serif", "'Raleway', sans-serif", "'Pacifico', cursive", "'Dancing Script', cursive", "'Caveat', cursive", "'Anton', sans-serif", "'Oswald', sans-serif", "'Bebas Neue', sans-serif", "'Patrick Hand', cursive", "'Rock Salt', cursive", "'Gloria Hallelujah', cursive", "'Playfair Display', serif"
+    ];
+
+            let fontIndex = 0;
+
+            // Change font every 100ms with cinematic effect
+            const fontInterval = setInterval(() => {
+                nameElement.style.fontFamily = fonts[fontIndex];
+                fontIndex = (fontIndex + 1) % fonts.length;
+            }, 100);
+
+            // After 6 seconds, fade out preloader and fade in content
+            setTimeout(() => {
+                clearInterval(fontInterval);
+                preloader.classList.add("fade-out");
+
+                // Show content after preloader fades out
+                setTimeout(() => {
+                    pageContent.style.opacity = "1";
+                    pageContent.style.transform = "scale(1)";
+                    preloader.style.display = "none";
+                }, 1500); // Matches fadeOutZoom animation duration
+            }, 3000);
+        });
+    </script>
+
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
       <div class="container">
@@ -69,9 +221,7 @@
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#portfolio">Portfolio</a>
             </li>
-	    <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#interests">Interests</a>
-            </li>
+	    
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#blog">Blog</a>
             </li>
@@ -85,7 +235,28 @@
 	
 	<section id="home" class="main-banner parallaxie" style="background: url('uploads/banner.jpg')">
 		<div class="heading">
-			<h1>hello i'm Surya.R</h1>
+		<script>
+			document.addEventListener("DOMContentLoaded", function () {
+    const textContainer = document.querySelector(".text-container");
+
+    setTimeout(() => {
+        textContainer.classList.add("active"); // Fade in text
+    }, 3000); // Start after preloader
+
+    setTimeout(() => {
+        textContainer.classList.add("final"); // Merge into one line
+    }, 5000); // Change layout after 4s
+});
+
+		</script>
+			<div class="text-container">
+    <p>Hello, I'm</p>
+    <h1>Surya.R</h1>
+</div>
+
+
+
+
 			<p>"I'm a passionate Full Stack Developer and Digital Creator with expertise in web development,<br> WordPress, and multimedia. With hands-on experience in HTML, CSS, PHP, Flutter, and Python (Kivy),<br> I have crafted 40+ innovative digital solutions. Always learning, always creating—let’s build something amazing together!"</p>
 			<h3 class="cd-headline clip is-full-width">
 				<span>I am interested in </span>
@@ -106,21 +277,23 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="message-box">                        
-                        <h2>About Surya.</h2>
+                        <div class="section-title text-left">
+                <h3>About Surya.</h3>                
+            </div><!-- end title -->
                         <p> I’m an IT Professional, Full Stack Developer, and Digital Creator with a strong passion for technology and innovation. With hands-on experience in web development, WordPress, and multimedia, I specialize in building dynamic and user-friendly digital solutions.<br><br>
 
 I hold a B.E degree in Computer Science and Engineering (2024) with an 8.0 CGPA and a Diploma in CSE (2021) with 88% equipping me with both practical and theoretical expertise. <br>Currently, I work as a Junior Full Stack Developer at BranUps, where I focus on WordPress development, full-stack technologies, and project management.<br>
 
 </p>
 
-                        <a href="uploads/surya resume.pdf" download="surya resume.pdf" class="sim-btn btn-hover-new" data-text="Download Resume"><span>Download CV</span></a>
+                        <a href="uploads/surya resume.pdf" download="surya resume.pdf" class="sim-btn btn-hover-new" data-text="Download Resume"><span>View Resume</span></a>
 
                     </div><!-- end messagebox -->
                 </div><!-- end col -->
 
                 <div class="col-md-6">
                     <div class="right-box-pro wow fadeIn">
-                        <img src="uploads/surya.jpg" alt="" class="img-fluid img-rounded">
+                        <img src="uploads/img2.jpg" alt="" class="img-fluid img-rounded">
                     </div><!-- end media -->
                 </div><!-- end col -->
             </div><!-- end row -->
@@ -131,10 +304,38 @@ I hold a B.E degree in Computer Science and Engineering (2024) with an 8.0 CGPA 
         <div class="container">
             <div class="section-title text-left">
                 <h3>Skills.</h3>
-                <p>Here are my Programming, Personal and Communication Skills which I consider for Profession.</p>
+                <p>Here are my Skills which I consider for Profession.</p>
             </div><!-- end title -->
 
             <div class="row">
+			<div class="col-md-4">
+        <div class="services-inner-box">
+            <div class="ser-icon">
+                <i class="fab fa-wordpress"></i>
+            </div>
+            <h2>Wordpress <br>(Expert)</h2>
+            <p>I started my career as a CMS Developer intern and mastered it through out my career for one year while having done 40+ projects on my own.</p>
+        </div>
+                </div><!-- end col -->
+				<div class="col-md-4">
+                    <div class="services-inner-box">
+						<div class="ser-icon">
+							<img src="uploads/canva.png" alt="Canva Logo" width="60">
+
+						</div>
+						<h2>Canva <br>(Expert)</h2>
+						<p>Canva has became a part of my work since it is very easy to acess and get some simple tasks get done in minutes, I can say I am an expert.</p>
+					</div>
+                </div><!-- end col -->
+				<div class="col-md-4">
+                    <div class="services-inner-box">
+						<div class="ser-icon">
+							<i class="fab fa-figma"></i>
+						</div>
+						<h2>Figma<br> (Intermediate)</h2>
+						<p>I have used Figma to design my projects as I have learned to use it more opten that I need to get things done, and I am better at this.</p>
+					</div>
+                </div><!-- end col -->
     <div class="col-md-4">
         <div class="services-inner-box">
             <div class="ser-icon">
@@ -147,56 +348,29 @@ I hold a B.E degree in Computer Science and Engineering (2024) with an 8.0 CGPA 
                 <div class="col-md-4">
                     <div class="services-inner-box">
 						<div class="ser-icon">
-							<i class="fa-brands fa-python"></i>
+							<i class="fab fa-python"></i>
 						</div>
 						<h2>Python-Kivy (Intermediate)</h2>
 						<p>I have used Python-Kivy framework to create a mobile application for my project which is a task management app which uses AI to solve tasks.</p>
 					</div>
                 </div><!-- end col -->
+				
 				<div class="col-md-4">
                     <div class="services-inner-box">
 						<div class="ser-icon">
-							<i class="fa-brands fa-figma"></i>
-						</div>
-						<h2>Figma<br> (Beginner)</h2>
-						<p>I have used Figma to design my projects as I have created two apps in this and it is very handy to use. But Now I am just a Beginner .</p>
-					</div>
-                </div><!-- end col -->
-				<div class="col-md-4">
-                    <div class="services-inner-box">
-						<div class="ser-icon">
-							<i class="fa-brands fa-html5"></i>
+							<i class="fab fa-html5"></i>
 						</div>
 						<h2>PHP-HTML-MySQL<br>(Intermediate)</h2>
 						<p>I have studeied PHP-HTML-MySQL from my school and college and I have used it in my projects and I have used the XAMP server to maintain SQL database.</p>
 					</div>
                 </div><!-- end col -->
-				<div class="col-md-4">
-                    <div class="services-inner-box">
-						<div class="ser-icon">
-							<i class="fas fa-tasks"></i>
-						</div>
-						<h2>Personal Skills (Intermediate)</h2>
-						<p>Leadership<br>Problem Solving<br>Active worker<br>Quick Learner.</p>
-					</div>
-                </div><!-- end col -->
-				<div class="col-md-4">
-                    <div class="services-inner-box">
-						<div class="ser-icon">
-							<i class="fas fa-comments"></i>
-						</div>
-						<h2>Communication Skills (Expert)</h2>
-						<p>Fluent: Tamil, English<br>
-							Articulate<br>
-							Collaborative<br>
-							Adaptable.</p>
-					</div>
-                </div><!-- end col -->
+				
+				
             </div><!-- end row -->
         </div><!-- end container -->
     </div><!-- end section -->
 	
-	<div id="portfolio" class="section lb">
+	<div id="portfolio" class="section wb">
 		<div class="container">
 			<div class="section-title text-left">
                 <h3>Portfolio.</h3>
@@ -207,14 +381,27 @@ I hold a B.E degree in Computer Science and Engineering (2024) with an 8.0 CGPA 
 				<div class="col-md-12">
 					<div class="button-group filter-button-group text-left">
 						<button class="active" data-filter="*">All</button>
+                        <button data-filter=".gal_d">WordPress</button>
 						<button data-filter=".gal_a">Flutter-Dart</button>
 						<button data-filter=".gal_b">Python-Kivy</button>
 						<button data-filter=".gal_c">Php-HTML-MySQL</button>
+                        
 					</div>
 				</div>
 			</div>
 			
-			<div class="gallery-list row">
+			
+            
+            <div class="gallery-list row">
+                <div class="col-md-4 col-sm-6 gallery-grid gal_d">
+                    <div class="gallery-single fix">
+                        <img src="uploads/work.jpeg" class="img-fluid" alt="Image">
+                        <div class="img-overlay">
+                            <a href="https://docs.google.com/spreadsheets/d/12U9wv6SeplCE1bZD01Hy0j2BAPQa-pdyozb-7TsP-NE/edit?usp=sharing" target="_blank" class="hoverbutton global-radius" title="Visit All Projects">Visit All Projects</a>
+                        </div>
+                    </div>
+                </div>
+
 				 <div class="col-md-4 col-sm-6 gallery-grid gal_a">
         <div class="gallery-single fix">
             <img src="uploads/Group 21.png" class="img-fluid" alt="Image">
@@ -255,80 +442,7 @@ I hold a B.E degree in Computer Science and Engineering (2024) with an 8.0 CGPA 
 			</div>
 		</div>
 	</div>
-	 <div id="interests" class="section wb">
-        <div class="container">
-            <div class="section-title text-left">
-                <h3>Interests.</h3>
-                <p>These are some thinngs that I do while I am free and I enjoy doing this ! </p>
-            </div><!-- end title -->
-
-            <div class="row">
-                <div class="col-md-12 col-sm-12">
-                    <div class="testi-carousel owl-carousel owl-theme">
-                        <div class="testimonial clearfix">
-                            <div class="desc">
-                                <h3><i class="fa fa-quote-left"></i> Playing VideoGames.</h3>
-                                <p class="lead">I will surely try to play games when I am free and I am interested in developing games in the future, AAA games are my favourite.</p>
-                            </div>
-                            
-                            <!-- end testi-meta -->
-                        </div>
-                        <!-- end testimonial -->
-
-                        <div class="testimonial clearfix">
-                            <div class="desc">
-                                <h3><i class="fa fa-quote-left"></i> Editing.</h3>
-                                <p class="lead">I have some knowledge about editing as I have done some Youtube videos in the past and I like to edit photos and videos for some occasions.</p>
-                            </div>
-                            
-                            <!-- end testi-meta -->
-                        </div>
-                        <!-- end testimonial -->
-
-                        <div class="testimonial clearfix">
-                            <div class="desc">
-                                <h3><i class="fa fa-quote-left"></i> Advanced Science.</h3>
-                                <p class="lead">I have been always interested in the science area from my childhood and always gather news about the advanced theories and science stuff. </p>
-                            </div>
-                            
-                            <!-- end testi-meta -->
-                        </div>
-                        <!-- end testimonial -->
-                        <div class="testimonial clearfix">
-                            <div class="desc">
-                                <h3><i class="fa fa-quote-left"></i> Cinema.</h3>
-                                <p class="lead">Not just watching movies but also admire their work. </p>
-                            </div>
-                           
-                            <!-- end testi-meta -->
-                        </div>
-                        <!-- end testimonial -->
-
-                        <div class="testimonial clearfix">
-                            <div class="desc">
-                                <h3><i class="fa fa-quote-left"></i> Trekking.</h3>
-                                <p class="lead">Its a perfect escape key from the reality to enjoy some time which I love doing. Sometimes it felt like a dream from my childhood watching "Man Vs Wild".</p>
-                            </div>
-                            
-                            <!-- end testi-meta -->
-                        </div>
-                        <!-- end testimonial -->
-
-                        <div class="testimonial clearfix">
-                            <div class="desc">
-                                <h3><i class="fa fa-quote-left"></i> Talking.</h3>
-                                <p class="lead">From all the above interests you will get something about me which is a tip of an iceberg I can talk about this for hours and hours if you are interested. </p>
-                            </div>
-                            <div class="testi-meta">
-                                
-                            </div>
-                            <!-- end testi-meta -->
-                        </div><!-- end testimonial -->
-                    </div><!-- end carousel -->
-                </div><!-- end col -->
-            </div><!-- end row -->
-        </div><!-- end container -->
-    </div><!-- end section -->
+	  
 	 
 	
 	<div id="blog" class="section lb">
@@ -455,10 +569,10 @@ I hold a B.E degree in Computer Science and Engineering (2024) with an 8.0 CGPA 
             <div class="footer-distributed">
                 <div class="footer-left">
                     <p class="footer-links">
-                        <a href="#">Home</a>
-                        <a href="https://www.linkedin.com/in/r-surya-1ab0a0200" target="_blank">LinkedIn</a>
-			<a href="https://github.com/ramsurya3345" target="_blank">GitHub</a>
-			<a href="mailto:ramsuraagp18@gmail.com">Gmail</a>
+                        
+                        <a href="https://www.linkedin.com/in/surya-r2002/" target="_blank">LinkedIn</a>
+			<a href="https://github.com/SuryaRameshKumar2002" target="_blank">GitHub</a>
+			<a href="mailto:suryarameshkumar2002@gmail.com">Gmail</a>
 			<a href="https://www.instagram.com/ram_surya_3345" target="_blank">Instagram</a>
                     </p>
                     
@@ -485,3 +599,6 @@ I hold a B.E degree in Computer Science and Engineering (2024) with an 8.0 CGPA 
 
 </body>
 </html>
+
+
+
